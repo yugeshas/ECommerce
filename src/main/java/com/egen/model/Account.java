@@ -4,12 +4,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
@@ -33,6 +31,15 @@ public class Account {
 	@Column(unique = true)
 	private String contactNo;
 
+//To do 
+// to avoid delete anomaly
+//	@OneToMany
+//	private List<Payment> payments = new ArrayList<>();
+//	
+//	@OneToMany
+//	private List<Address> address = new ArrayList<>();
+	
+		
 	public Integer getAccountId() {
 		return accountId;
 	}

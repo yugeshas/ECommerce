@@ -31,6 +31,8 @@ public class Payment {
 	private boolean defaultCard;
 	private Double amount;
 	
+	//To do - remove it and keep unidirectional OneToMany
+	// to avoid delete anomaly
 	@ManyToOne
 	@JoinColumn(name = "accountId",referencedColumnName="accountId", nullable = false)
 	private Account accountId;

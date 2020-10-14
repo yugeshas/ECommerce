@@ -20,6 +20,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "item")
 public class Item {
 	
+	//to do - create Product class to achieve normalisation
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer itemId;

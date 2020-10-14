@@ -11,6 +11,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 
 @Builder
@@ -38,9 +40,12 @@ public class Address {
 	private boolean weekendDelivery;
 	
 
-	@ManyToOne
+	//To do - remove it and keep unidirectional OneToMany
+	// to avoid delete anomaly
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "accountId",referencedColumnName="accountId", nullable = false)
 	private Account accountId;
+	
 	
 	public Account getAccountId() {
 		return accountId;

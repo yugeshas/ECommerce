@@ -1,5 +1,6 @@
 package com.egen.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +41,22 @@ public class OrderController {
         }).orElseThrow(() -> new DataNotFoundException("Error in order placement! Try again."));
 
 	}
-		
+
+	//to do 
+	//handle paymentId issue for adding order_payments
+	//similarly for itemId for order_items
+	//this function does not work completely
+	@PostMapping("/{accountId}/addbulk")
+	public ResponseEntity<String> addNewOrders(@PathVariable(value = "accountId") Integer accountId, @RequestBody List<Orders> orderDetails) 
+			throws DataNotFoundException{
+		return accountRepository.findById(accountId).map(accountHolder -> {
+			orderDetails.forEach(order -> order.setAccountId(accountHolder));
+			orderRepository.saveAll(orderDetails);
+			return ResponseEntity.ok("Order is placed");
+        }).orElseThrow(() -> new DataNotFoundException("Error in order placement! Try again."));
+
+	}
+
 	@DeleteMapping("{orderId}/delete")
 	public ResponseEntity<String> deleteOrder(@PathVariable Integer orderId) throws DataNotFoundException  {
 		
